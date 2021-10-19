@@ -1,0 +1,63 @@
+{
+    "name": "tailwind-merge-rtl-plugin",
+    "version": "0.0.5",
+    "description": "RTL Plugin for tailwind-merge",
+    "keywords": [
+        "tailwind-merge",
+        "twMerge",
+        "rtl"
+    ],
+    "homepage": "https://github.com/vltansky/tailwind-merge-rtl-plugin",
+    "bugs": {
+        "url": "https://github.com/vltansky/tailwind-merge-rtl-plugin/issues"
+    },
+    "license": "MIT",
+    "author": "Vlad Tansky",
+    "files": [
+        "dist",
+        "src"
+    ],
+    "type": "module",
+    "source": "src/index.ts",
+    "exports": {
+        "require": "./dist/index.cjs",
+        "import": "./dist/index.js",
+        "default": "./dist/index.js"
+    },
+    "module": "dist/index.module.js",
+    "main": "dist/index.cjs",
+    "types": "./dist/types/index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/vltansky/tailwind-merge-rtl-plugin.git"
+    },
+    "sideEffects": false,
+    "scripts": {
+        "build": "rm -rf dist/* && microbundle --strict --no-compress --format modern,esm,cjs",
+        "build:min": "rm -rf dist/* && microbundle --strict --format modern",
+        "test": "jest",
+        "type-check": "tsc --build",
+        "lint": "eslint --max-warnings 0 '**'",
+        "preversion": "git checkout main && git pull",
+        "version": "git push --follow-tags && open https://github.com/vltansky/tailwind-merge-rtl-plugin/releases"
+    },
+    "dependencies": {
+        "tailwind-merge": "^0.7.1"
+    },
+    "devDependencies": {
+        "@types/jest": "^26.0.24",
+        "@typescript-eslint/eslint-plugin": "^4.28.3",
+        "@typescript-eslint/parser": "^4.28.3",
+        "eslint": "^7.30.0",
+        "eslint-plugin-import": "^2.23.4",
+        "eslint-plugin-jest": "^24.3.6",
+        "fp-ts": "^2.10.5",
+        "jest": "^27.0.6",
+        "microbundle": "^0.13.3",
+        "package-build-stats": "^7.2.4",
+        "prettier": "^2.3.2",
+        "ts-jest": "^27.0.3",
+        "typescript": "^4.4.3",
+        "zx": "^4.0.0"
+    }
+}
