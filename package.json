@@ -41,8 +41,8 @@
         "preversion": "git checkout main && git pull",
         "version": "git push --follow-tags && open https://github.com/vltansky/tailwind-merge-rtl-plugin/releases"
     },
-    "dependencies": {
-        "tailwind-merge": "^0.7.1"
+    "peerDependencies": {
+        "tailwind-merge": "~0.8.0"
     },
     "devDependencies": {
         "@types/jest": "^26.0.24",
@@ -56,6 +56,7 @@
         "microbundle": "^0.13.3",
         "package-build-stats": "^7.2.4",
         "prettier": "^2.3.2",
+        "tailwind-merge": "~0.8.0",
         "ts-jest": "^27.0.3",
         "typescript": "^4.4.3",
         "zx": "^4.0.0"
