@@ -125,5 +125,29 @@ export const withRtl = (prevConfig: Config): Config => {
              */
             'rtl.border-color-e': [{ 'border-e': getAny() }],
         },
+        conflictingClassGroups: {
+            inset: ['rtl.start', 'rtl.end'],
+            'inset-x': ['rtl.start', 'rtl.end'],
+            p: ['rtl.ps', 'rtl.pe'],
+            px: ['rtl.ps', 'rtl.pe'],
+            m: ['rtl.ms', 'rtl.me'],
+            mx: ['rtl.ms', 'rtl.me'],
+            'space-x': ['rtl.space-s'],
+            'rtl.space-s': ['space-x'],
+            rounded: [
+                'rtl.rounded-s',
+                'rtl.rounded-e',
+                'rtl.rounded-ts',
+                'rtl.rounded-te',
+                'rtl.rounded-bs',
+                'rtl.rounded-be',
+            ],
+            'rtl.rounded-s': ['rtl.rounded-ts', 'rtl.rounded-bs'],
+            'rtl.rounded-e': ['rtl.rounded-te', 'rtl.rounded-be'],
+            'border-w': ['rtl.border-w-s', 'rtl.border-w-e'],
+            'divide-x': ['rtl.divide-s'],
+            'rtl.divide-s': ['divide-x'],
+            'border-color': ['rtl.border-color-s', 'rtl.border-color-e'],
+        },
     })
 }
