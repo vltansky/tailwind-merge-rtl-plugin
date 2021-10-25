@@ -1,129 +1,153 @@
-import { createTailwindMerge } from 'tailwind-merge'
+import { Config, mergeConfigs, validators } from 'tailwind-merge'
 
-import { isAny, isCustomLength, isLength } from './config-validators'
+export const withRtl = (prevConfig: Config): Config => {
+    const getLength = () => [validators.isLength] as const
+    const getLengthWithAuto = () => ['auto', validators.isLength] as const
+    const getLengthWithEmpty = () => ['', validators.isLength] as const
+    const getAny = () => [validators.isAny] as const
+    const getRounded = () =>
+        [
+            'none',
+            '',
+            'sm',
+            'md',
+            'lg',
+            'xl',
+            '2xl',
+            '3xl',
+            'full',
+            validators.isCustomLength,
+        ] as const
 
-const SIZES_SIMPLE = ['sm', 'md', 'lg', 'xl', '2xl'] as const
-const LENGTH = [isLength] as const
-const LENGTH_WITH_AUTO = ['auto', isLength] as const
-const LENGTH_WITH_EMPTY = ['', isLength] as const
-const ANY = [isAny] as const
-const ROUNDED = ['none', '', ...SIZES_SIMPLE, '3xl', 'full', isCustomLength] as const
-
-export const withRtl = (prevConfigFn: any) => {
-    const prevConfig = prevConfigFn()
-
-    return {
-        ...prevConfig,
+    return mergeConfigs(prevConfig, {
         classGroups: {
-            ...prevConfig.classGroups,
-            float: [
-                ...(prevConfig.classGroups.float || []),
-                { float: ['right', 'left', 'none', 'start', 'end'] },
-            ],
-            clear: [
-                ...(prevConfig.classGroups.clear || []),
-                { clear: ['left', 'right', 'both', 'none', 'start', 'end'] },
-            ],
-            'text-alignment': [
-                ...(prevConfig.classGroups['text-alignment'] || []),
-                { text: ['left', 'center', 'right', 'justify', 'start', 'end'] },
-            ],
+            float: [{ float: ['start', 'end'] }],
+            clear: [{ clear: ['start', 'end'] }],
+            'text-alignment': [{ text: ['start', 'end'] }],
             /**
              * Left
              * @see https://tailwindcss.com/docs/top-right-bottom-left
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
              */
-            start: [{ start: LENGTH_WITH_AUTO }],
+            'rtl.start': [{ start: getLengthWithAuto() }],
             /**
              * Left
              * @see https://tailwindcss.com/docs/top-right-bottom-left
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
              */
-            end: [{ end: LENGTH_WITH_AUTO }],
+            'rtl.end': [{ end: getLengthWithAuto() }],
             /**
              * Padding start
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
              */
-            ps: [{ ps: LENGTH }],
+            'rtl.ps': [{ ps: getLength() }],
 
             /**
              * Padding end
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
              */
-            pe: [{ pe: LENGTH }],
+            'rtl.pe': [{ pe: getLength() }],
             /**
              * Margin start
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
              */
-            ms: [{ ms: LENGTH }],
+            'rtl.ms': [{ ms: getLength() }],
 
             /**
              * Margin end
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
              */
-            me: [{ me: LENGTH }],
+            'rtl.me': [{ me: getLength() }],
             /**
              * Space Between Start Direction
              * @see https://tailwindcss.com/docs/space
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
              */
-            'space-s': [{ 'space-s': LENGTH }],
+            'rtl.space-s': [{ 'space-s': getLength() }],
             /**
              * Border Radius Start
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
-             */ 'rounded-s': [{ 'rounded-s': ROUNDED }],
+             */
+            'rtl.rounded-s': [{ 'rounded-s': getRounded() }],
             /**
              * Border Radius End
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
              */
-            'rounded-e': [{ 'rounded-e': ROUNDED }],
+            'rtl.rounded-e': [{ 'rounded-e': getRounded() }],
             /**
              * Border Radius Top Start
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
              */
-            'rounded-ts': [{ 'rounded-ts': ROUNDED }],
+            'rtl.rounded-ts': [{ 'rounded-ts': getRounded() }],
             /**
              * Border Radius Top End
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
              */
-            'rounded-te': [{ 'rounded-te': ROUNDED }],
+            'rtl.rounded-te': [{ 'rounded-te': getRounded() }],
             /**
              * Border Radius Bottom Start
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
              */
-            'rounded-bs': [{ 'rounded-bs': ROUNDED }],
+            'rtl.rounded-bs': [{ 'rounded-bs': getRounded() }],
             /**
              * Border Radius Bottom End
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
              */
-            'rounded-be': [{ 'rounded-be': ROUNDED }],
+            'rtl.rounded-be': [{ 'rounded-be': getRounded() }],
             /**
              * Border Width Start
              * @see https://tailwindcss.com/docs/border-width
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
-             */ 'border-w-s': [{ 'border-s': LENGTH_WITH_EMPTY }],
+             */
+            'rtl.border-w-s': [{ 'border-s': getLengthWithEmpty() }],
             /**
              * Border Width End
              * @see https://tailwindcss.com/docs/border-width
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
              */
-            'border-w-e': [{ 'border-e': LENGTH_WITH_EMPTY }],
+            'rtl.border-w-e': [{ 'border-e': getLengthWithEmpty() }],
             /**
              * Divide Width Start Direction
              * @see https://tailwindcss.com/docs/divide-width
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
-             */ 'divide-s': [{ 'divide-s': LENGTH_WITH_EMPTY }],
+             */
+            'rtl.divide-s': [{ 'divide-s': getLengthWithEmpty() }],
             /**
              * Border Color Start
              * @see https://tailwindcss.com/docs/border-color
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
-             */ 'border-color-s': [{ 'border-s': ANY }],
+             */
+            'rtl.border-color-s': [{ 'border-s': getAny() }],
             /**
              * Border Color End
              * @see https://tailwindcss.com/docs/border-color
              * @see https://github.com/20lives/tailwindcss-rtl#utilities
              */
-            'border-color-e': [{ 'border-e': ANY }],
+            'rtl.border-color-e': [{ 'border-e': getAny() }],
         },
-    }
+        conflictingClassGroups: {
+            inset: ['rtl.start', 'rtl.end'],
+            'inset-x': ['rtl.start', 'rtl.end'],
+            p: ['rtl.ps', 'rtl.pe'],
+            px: ['rtl.ps', 'rtl.pe'],
+            m: ['rtl.ms', 'rtl.me'],
+            mx: ['rtl.ms', 'rtl.me'],
+            'space-x': ['rtl.space-s'],
+            'rtl.space-s': ['space-x'],
+            rounded: [
+                'rtl.rounded-s',
+                'rtl.rounded-e',
+                'rtl.rounded-ts',
+                'rtl.rounded-te',
+                'rtl.rounded-bs',
+                'rtl.rounded-be',
+            ],
+            'rtl.rounded-s': ['rtl.rounded-ts', 'rtl.rounded-bs'],
+            'rtl.rounded-e': ['rtl.rounded-te', 'rtl.rounded-be'],
+            'border-w': ['rtl.border-w-s', 'rtl.border-w-e'],
+            'divide-x': ['rtl.divide-s'],
+            'rtl.divide-s': ['divide-x'],
+            'border-color': ['rtl.border-color-s', 'rtl.border-color-e'],
+        },
+    })
 }
