@@ -16,7 +16,7 @@ export const withRtl = (prevConfig: Config): Config => {
             '2xl',
             '3xl',
             'full',
-            validators.isCustomLength,
+            validators.isArbitraryLength,
         ] as const
 
     return mergeConfigs(prevConfig, {

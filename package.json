@@ -1,6 +1,6 @@
 {
     "name": "tailwind-merge-rtl-plugin",
-    "version": "0.0.7",
+    "version": "0.9.0",
     "description": "RTL Plugin for tailwind-merge",
     "keywords": [
         "tailwind-merge",
@@ -37,12 +37,13 @@
         "build:min": "rm -rf dist/* && microbundle --strict --format modern",
         "test": "jest",
         "type-check": "tsc --build",
+        "prepublish": "npm run build:min",
         "lint": "eslint --max-warnings 0 '**'",
         "preversion": "git checkout main && git pull",
         "version": "git push --follow-tags && open https://github.com/vltansky/tailwind-merge-rtl-plugin/releases"
     },
     "peerDependencies": {
-        "tailwind-merge": "~0.8.0"
+        "tailwind-merge": "~1.0.0"
     },
     "devDependencies": {
         "@types/jest": "^26.0.24",
@@ -54,9 +55,8 @@
         "fp-ts": "^2.10.5",
         "jest": "^27.0.6",
         "microbundle": "^0.13.3",
-        "package-build-stats": "^7.2.4",
         "prettier": "^2.3.2",
-        "tailwind-merge": "~0.8.0",
+        "tailwind-merge": "~1.0.0",
         "ts-jest": "^27.0.3",
         "typescript": "^4.4.3",
         "zx": "^4.0.0"
