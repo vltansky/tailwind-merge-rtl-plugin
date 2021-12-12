@@ -43,7 +43,7 @@
         "version": "git push --follow-tags && open https://github.com/vltansky/tailwind-merge-rtl-plugin/releases"
     },
     "peerDependencies": {
-        "tailwind-merge": "~0.8.0"
+        "tailwind-merge": "~1.0.0"
     },
     "devDependencies": {
         "@types/jest": "^26.0.24",
