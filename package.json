@@ -1,6 +1,6 @@
 {
     "name": "tailwind-merge-rtl-plugin",
-    "version": "0.9.0",
+    "version": "0.9.5",
     "description": "RTL Plugin for tailwind-merge",
     "keywords": [
         "tailwind-merge",
