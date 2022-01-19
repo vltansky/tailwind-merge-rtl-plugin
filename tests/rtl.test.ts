@@ -16,4 +16,7 @@ test('rtl', () => {
         ).toBe(`${tag}-end focus:${tag}-start hover:${tag}-end`)
     })
     expect(customTwMergeWithPluginRTL('text-black text-left text-end')).toBe('text-black text-end')
+    expect(customTwMergeWithPluginRTL(`left-[5px] rtl:right-[5px] rtl:let-auto`)).toBe(
+        `left-[5px] rtl:right-[5px] rtl:let-auto`
+    )
 })
