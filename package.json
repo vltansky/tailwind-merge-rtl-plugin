@@ -14,8 +14,7 @@
     "license": "MIT",
     "author": "Vlad Tansky",
     "files": [
-        "dist",
-        "src"
+        "dist"
     ],
     "type": "module",
     "source": "src/index.ts",
@@ -33,7 +32,7 @@
     },
     "sideEffects": false,
     "scripts": {
-        "build": "rm -rf dist/* && microbundle --strict --no-compress --format modern,cjs",
+        "build": "rm -rf dist/* && microbundle --strict --no-compress --format modern,esm,cjs",
         "build:min": "rm -rf dist/* && microbundle --strict --format modern,esm,cjs",
         "test": "jest",
         "type-check": "tsc --build",
