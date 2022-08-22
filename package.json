@@ -1,6 +1,6 @@
 {
     "name": "tailwind-merge-rtl-plugin",
-    "version": "0.9.5",
+    "version": "0.9.6",
     "description": "RTL Plugin for tailwind-merge",
     "keywords": [
         "tailwind-merge",
@@ -33,8 +33,8 @@
     },
     "sideEffects": false,
     "scripts": {
-        "build": "rm -rf dist/* && microbundle --strict --no-compress --format modern,esm,cjs",
-        "build:min": "rm -rf dist/* && microbundle --strict --format modern",
+        "build": "rm -rf dist/* && microbundle --strict --no-compress --format modern,cjs",
+        "build:min": "rm -rf dist/* && microbundle --strict --format modern,esm,cjs",
         "test": "jest",
         "type-check": "tsc --build",
         "prepublish": "npm run build:min",
